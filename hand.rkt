@@ -48,6 +48,7 @@
   (lambda (o ords)
     (flat1 (map betweens (pairs o ords)))))
 
+;; restart for man
 (define hand!
   (lambda (x y m ords)
     (put! x y m)

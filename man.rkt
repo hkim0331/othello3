@@ -13,7 +13,6 @@
     (set! *stop* true)
     (let loop ()
       (when *stop*
-        (printf "man waits click~%")
         (sleep/yield 1)
         (loop)))))
 

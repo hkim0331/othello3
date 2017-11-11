@@ -33,7 +33,6 @@
                     (lambda (b e)
                       (let* ((m (mark (turn)))
                              (ords (check x y m)))
-                        (printf "click at ~a ~a ~a~%" x y m)
                         (if (empty? ords)
                             (error "you can't do that")
                             (hand! x y m ords))))])))
@@ -62,7 +61,8 @@
   (lambda (m) (if (_? m) " " m)))
 
 (define display
-  (lambda ()
+  (lambda (title)
+    (send *frame* set-label title)
     (for ([y (range (n))])
       (for ([x (range (n))])
         (send (button x y) set-label (C (get x y)))))))

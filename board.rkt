@@ -16,7 +16,7 @@
 
 (define range?
   (lambda (x y)
-   (and (<= 0 x) (< x *n*) (<= 0 x) (< x *n*))))
+   (and (<= 0 x) (< x (n)) (<= 0 y) (< y (n)))))
 
 (define get-aux
   (λ (f x y default)
@@ -65,7 +65,6 @@
 (define turn!
   (λ (x y)
     (let ((m (get x y)))
-      (printf "turn! will turn ~a ~a to ~a~%" x y (opposite m))
       (if (mark? m "_")
           (error "you can't do that.")
           (put! x y (opposite m))))))

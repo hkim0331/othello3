@@ -29,14 +29,4 @@
           (loop (turn-next))))
       (judge))))
 
-;; (let ((players (players-init (lambda () (printf "man~%")) (lambda () (printf "next~%")))))
-;;   (turn-init)
-;;   (players (turn))
-;;   (turn-next)
-;;   (players (turn))
-;;   (turn-next)
-;;   (players (turn))
-;;   (turn-next)
-;;   (players (turn)))
-
 (game man man 8)
