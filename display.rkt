@@ -5,7 +5,7 @@
 (require "hand.rkt")
 (require "turn.rkt")
 
-(provide display-init display)
+(provide display-init display mark)
 
 (define *frame* #f)
 (define *btns* #f)
@@ -34,7 +34,7 @@
                       (let* ((m (mark (turn)))
                              (ords (check x y m)))
                         (if (empty? ords)
-                            (error "you can't do that")
+                            (error "empty ords. you can't do that.")
                             (hand! x y m ords))))])))
             (set! *btns* (cons (list x y btn) *btns*))))))
     ;;FIXME: PASS BUTTON

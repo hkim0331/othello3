@@ -66,7 +66,7 @@
   (λ (x y)
     (let ((m (get x y)))
       (if (mark? m "_")
-          (error "you can't do that.")
+          (error "turn!: you can't do that.")
           (put! x y (opposite m))))))
 
 ;; initialize othello board *m*.

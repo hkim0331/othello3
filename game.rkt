@@ -14,6 +14,7 @@
 
 (define finish?
   (lambda () #f))
+
 (define judge
   (lambda () "thanks"))
 
@@ -21,12 +22,14 @@
   (lambda (p1 p2 n)
     (let ((players (players-init p1 p2)))
       (init n)
-      (display)
-      (let loop ((turn (turn-init)))
-        (players turn)
-        (display)
+      (turn-init)
+      (display (string-append "first: " (mark (turn))))
+      (let loop ()
+        (players (turn))
+        (turn-next)
+        (display (string-append "next: " (mark (turn))))
         (unless (finish?)
-          (loop (turn-next))))
+          (loop)))
       (judge))))
 
 (game man man 8)
