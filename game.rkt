@@ -23,6 +23,7 @@
     (let ((players (players-init p1 p2)))
       (init n)
       (turn-init)
+;;      (turn-next)
       (display (string-append "first: " (mark (turn))))
       (let loop ()
         (players (turn))
