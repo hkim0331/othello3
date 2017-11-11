@@ -1,7 +1,7 @@
 #lang racket
 
 (provide
- board-init!
+ board-init
  n
  mark?
  opposite
@@ -16,7 +16,6 @@
 (define range?
   (lambda (x y)
    (and (<= 0 x) (< x *n*) (<= 0 x) (< x *n*))))
-
 
 (define get-aux
   (λ (f x y default)
@@ -36,16 +35,15 @@
   (λ (x y)
     (get-aux fourth x y 1)))
 
-
 (define mark?
-  (lambda (x y m)
-    (equal? (get x y) m)))
+  (lambda (m1 m2)
+    (equal? m1 m2)))
 
 (define opposite
   (lambda (m)
     (cond
       ((mark? m "o") "x")
-      ((mark? m "x") "_")
+      ((mark? m "x") "o")
       (else (error "mark is not 'o' neigher 'x'.")))))
 
 (define put!
@@ -55,21 +53,22 @@
         (cond
           ((null? m) '())
           ((and (= x (first (car m))) (= y (second (car m)))) (cdr m))
-          (else (cons (first m) (RM x y (rest m)))))))
+          (else (cons (first m) (RM (rest m)))))))
     (if (range? x y)
-        (set! *m* (cons (list x y mark (get-w x y) (RM *m*))))
+        (set! *m* (cons (list x y mark (get-w x y)) (RM *m*)))
         (error "you can't put there."))))
 
 (define turn!
   (λ (x y)
-    (let ((mark (get x y)))
-      (if (mark? mark "_")
+    (let ((m (get x y)))
+      (printf "turn! will turn ~a ~a to ~a~%" x y (opposite m))
+      (if (mark? m "_")
           (error "you can't do that.")
-          (put! x y (opposite mark))))))
+          (put! x y (opposite m))))))
 
 ;; initialize othello board *m*.
 ;; ((x y mark weight) ...)
-(define init!
+(define init
   (λ (n)
     (set! *n* n)
     (set! *m* '())
@@ -79,10 +78,10 @@
 
 (define n (lambda () *n*))
 
-(define board-init!
+(define board-init
   (λ (n)
     (let ((m (/ n 2)))
-      (init! n)
+      (init n)
       (put! (- m 1) (- m 1) "o")
       (put! m (- m 1) "x")
       (put! (- m 1) m "x")

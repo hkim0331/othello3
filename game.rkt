@@ -1,23 +1,32 @@
 #lang racket
 
-(require 'board.rkt)
-(require 'display.rkt)
-;;(require 'turns.rkt)
-;;(require 'players.rkt)
+(require "board.rkt")
+(require "display.rkt")
+(require "turn.rkt")
+(require "players.rkt")
+(require "man.rkt")
 
-(board-init! 8)
-(display-init!)
-;; (define game
-;;   (lambda (n p1 p2)
-;;     (let ((players (players-init p1 p2)))
-;;       (board-init! n)
-;;       (display-init!)
-;;       (let loop ((turn (turn-init!)))
-;;         (players turn)
-;;         (display)
-;;         (unless (finish?)
-;;           (loop (turn-next))))
-;;       (judge))))
+(define init
+  (lambda (n)
+    (board-init n)
+    (display-init n)
+    (turn-init)))
 
-;(game n man man)
+(define finish?
+  (lambda () #f))
+(define judge
+  (lambda () "thanks"))
+
+(define game
+  (lambda (p1 p2 n)
+    (let ((players (players-init p1 p2)))
+      (init n)
+      (let loop ((turn (turn-init)))
+        (players turn)
+        (display)
+        (unless (finish?)
+          (loop (turn-next))))
+      (judge))))
+
+(game man man 8)
 

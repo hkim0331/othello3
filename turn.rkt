@@ -1,6 +1,6 @@
 #lang racket
 
-(provide turn-init! turn turn-next)
+(provide turn-init turn turn-next)
 
 (define *turn* 0)
 
@@ -12,7 +12,7 @@
     (set! *turn* (add1 *turn*))
     *turn*))
 
-(define turn-init!
+(define turn-init
   (lambda ()
     (set! *turn* 0)
     *turn*))
