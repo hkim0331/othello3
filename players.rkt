@@ -4,5 +4,5 @@
 
 (define (players-init p1 p2)
   (lambda (turn)
-    (if (even? turn) p1 p2)))
+    (if (even? turn) (p1) (p2))))
 

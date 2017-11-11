@@ -1,10 +1,10 @@
 #lang racket/gui
 
-(provide man start)
+(provide man restart)
 
 (define *stop* true)
 
-(define start
+(define restart
   (lambda ()
     (set! *stop* false)))
 
@@ -13,6 +13,7 @@
     (set! *stop* true)
     (let loop ()
       (when *stop*
+        (printf "man waits click~%")
         (sleep/yield 1)
         (loop)))))
 

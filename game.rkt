@@ -21,7 +21,9 @@
   (lambda (p1 p2 n)
     (let ((players (players-init p1 p2)))
       (init n)
+      (display)
       (let loop ((turn (turn-init)))
+        (printf "turn: ~a~%" turn)
         (players turn)
         (display)
         (unless (finish?)
@@ -30,3 +32,12 @@
 
 (game man man 8)
 
+(let ((players (players-init (lambda () (printf "man~%")) (lambda () (printf "next~%")))))
+  (turn-init)
+  (players (turn))
+  (turn-next)
+  (players (turn))
+  (turn-next)
+  (players (turn))
+  (turn-next)
+  (players (turn)))

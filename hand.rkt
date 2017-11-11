@@ -52,4 +52,4 @@
   (lambda (x y m ords)
     (put! x y m)
     (map (lambda (xy) (apply turn! xy)) (must-be-turned (list x y) ords))
-    (start)))
+    (restart)))
