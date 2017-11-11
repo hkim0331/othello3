@@ -58,8 +58,11 @@
       (put! (- m 1) m "x")
       (put! m m "o"))))
 
+(define C
+  (lambda (m) (if (_? m) " " m)))
+
 (define display
   (lambda ()
     (for ([y (range (n))])
       (for ([x (range (n))])
-        (send (button x y) set-label (get x y))))))
+        (send (button x y) set-label (C (get x y)))))))

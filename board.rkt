@@ -4,6 +4,7 @@
  board-init
  n
  mark?
+ _?
  opposite
  get
  get-w
@@ -38,6 +39,9 @@
 (define mark?
   (lambda (m1 m2)
     (equal? m1 m2)))
+
+(define _?
+  (lambda (m) (mark? m "_")))
 
 (define opposite
   (lambda (m)

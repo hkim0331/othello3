@@ -4,9 +4,6 @@
 
 (provide check)
 
-(define _?
-  (lambda (m) (equal? m "_")))
-
 ;;; find の下請け。
 ;;; 相手石が見つかってから呼ばれる。
 ;;; (x y) は調べようとする座標
