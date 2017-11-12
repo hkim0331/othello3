@@ -1,7 +1,16 @@
 #lang racket
 
+;; FIXME: if man 'passed', should clear *stop* flag.
 (require "man.rkt")
-(provide finish? turn-init turn turn-next pass pass! pass-reset)
+
+(provide
+ finish?
+ turn-init
+ turn
+ turn-next
+ pass
+ pass!
+ pass-reset)
 
 (define finish?
   (lambda ()

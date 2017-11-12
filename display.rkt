@@ -9,7 +9,6 @@
 (require "hand.rkt")
 (require "turn.rkt")
 
-
 ;;FIXME: display shadows racket function, 'display'.
 (provide display-init display)
 
@@ -17,6 +16,7 @@
 (define *btns* #f)
 (define *n* #f)
 
+;; private error function, shadows racket's error function.
 (define error
   (lambda (msg)
     (play-sound i-m-afraid #t)
@@ -34,13 +34,7 @@
                    [label " "]
                    [callback
                     (lambda (b e)
-                      ;; (let* ((m (mark (turn)))
-                      ;;        (stones (check x y m)))
-                      ;;   (if (empty? stones)
-                      ;;       (error "no stone. you can't do that.")
-                      ;;       (hand! x y m stones)))
-                      (hand! x y (mark (turn)))
-                      )])))
+                      (hand! x y (mark (turn))))])))
             (set! *btns* (cons (list x y btn) *btns*))))))
     (new button% [parent (new horizontal-pane% [parent *frame*])]
          [label "pass"]

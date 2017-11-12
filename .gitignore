@@ -1,5 +1,5 @@
 compiled/
-othello
+resources/
 *.app
 test.*
 

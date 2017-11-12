@@ -2,6 +2,7 @@
 
 (provide
  board-init
+ o-x
  n
  mark
  mark?
@@ -15,6 +16,7 @@
 (define *m* #f)
 (define *n* #f)
 
+;; shadow racket's error. or use other name?
 (define error
   (lambda (s)
     (printf s)))
@@ -52,6 +54,14 @@
 (define _?
   (lambda (m) (mark? m "_")))
 
+(define find-marks
+  (lambda (m)
+    (filter (lambda (xy) (mark? m (third xy))) *m*)))
+
+(define o-x
+  (lambda ()
+    (- (length (find-marks "o")) (length (find-marks "x")))))
+
 (define opposite
   (lambda (m)
     (cond
@@ -78,6 +88,8 @@
           (error "turn!: you can't do that.")
           (put! x y (opposite m))))))
 
+(define n (lambda () *n*))
+
 ;; initialize othello board *m*.
 ;; ((x y mark weight) ...)
 (define init
@@ -87,8 +99,6 @@
     (for ([y (range *n*)])
          (for ([x (range *n*)])
               (set! *m* (cons (list x y "_" 1) *m*))))))
-
-(define n (lambda () *n*))
 
 (define board-init
   (λ (n)

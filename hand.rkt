@@ -1,5 +1,6 @@
 #lang racket
 
+(require "utils.rkt")
 (require "board.rkt")
 (require "check.rkt")
 ;; FIXME: bad design
@@ -40,11 +41,6 @@
 (define pairs
   (lambda (o xys)
     (map (lambda (xy) (list o xy)) xys)))
-
-(define flat1
-  (lambda (lst)
-    (if (null? lst) '()
-        (append (car lst) (flat1 (cdr lst))))))
 
 ;; ひっくり返すべき石の座標のリスト。
 (define must-be-turned

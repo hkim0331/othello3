@@ -1,8 +1,6 @@
 #lang racket
-;;; required from hand.rkt
 
 (require "board.rkt")
-
 (provide check)
 
 ;; 相手石が見つかってから呼ばれる。
