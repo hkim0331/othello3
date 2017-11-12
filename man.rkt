@@ -1,10 +1,10 @@
 #lang racket/gui
 
-(provide man restart)
+(provide man man-restart)
 
 (define *stop* true)
 
-(define restart
+(define man-restart
   (lambda ()
     (set! *stop* false)))
 

@@ -37,7 +37,11 @@
                             (error "empty ords. you can't do that.")
                             (hand! x y m ords))))])))
             (set! *btns* (cons (list x y btn) *btns*))))))
-    ;;FIXME: PASS BUTTON
+    (new button% [parent (new horizontal-pane% [parent *frame*])]
+         [label "pass"]
+         [callback
+          (lambda (btn evt)
+            (pass!))])
     (send *frame* show #t)))
 
 (define button
@@ -61,8 +65,13 @@
   (lambda (m) (if (_? m) " " m)))
 
 (define display
-  (lambda (title)
-    (send *frame* set-label title)
-    (for ([y (range (n))])
-      (for ([x (range (n))])
-        (send (button x y) set-label (C (get x y)))))))
+  (lambda ()
+    (let ((title
+           (string-append "next: "
+                          (mark (turn))
+                          ", pass: "
+                          (number->string (pass)))))
+      (send *frame* set-label title)
+      (for ([y (range (n))])
+        (for ([x (range (n))])
+          (send (button x y) set-label (C (get x y))))))))

@@ -1,4 +1,4 @@
-#lang racket
+#lang racket/gui
 
 (require "board.rkt")
 (require "display.rkt")
@@ -13,22 +13,27 @@
     (turn-init)))
 
 (define finish?
-  (lambda () #f))
+  (lambda ()
+    (< 1 (pass))))
 
+;; if call message-box, should lang racket/gui.
 (define judge
-  (lambda () "thanks"))
+  (lambda ()
+    (message-box "othello3" "thanks")
+    (exit)))
 
 (define game
   (lambda (p1 p2 n)
     (let ((players (players-init p1 p2)))
       (init n)
       (turn-init)
-;;      (turn-next)
-      (display (string-append "first: " (mark (turn))))
+      ;; first move black
+      ;; (turn-next)
+      (display)
       (let loop ()
         (players (turn))
-        (turn-next)
-        (display (string-append "next: " (mark (turn))))
+        ;; (printf "next ~a~%" (turn))
+        (display)
         (unless (finish?)
           (loop)))
       (judge))))

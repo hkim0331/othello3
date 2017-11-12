@@ -2,6 +2,8 @@
 
 (require "board.rkt")
 (require "check.rkt")
+;; for man vs man, should reset *stop* flag by man-restart.
+(require "turn.rkt")
 (require "man.rkt")
 
 (provide hand!)
@@ -48,9 +50,11 @@
   (lambda (o ords)
     (flat1 (map betweens (pairs o ords)))))
 
-;; restart for man
+;; should clear *stop* when man plays.
 (define hand!
   (lambda (x y m ords)
     (put! x y m)
     (map (lambda (xy) (apply turn! xy)) (must-be-turned (list x y) ords))
-    (restart)))
+    (turn-next)
+    (pass-reset)
+    (man-restart)))
