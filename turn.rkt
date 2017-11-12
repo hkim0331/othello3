@@ -1,7 +1,11 @@
 #lang racket
 
 (require "man.rkt")
-(provide turn-init turn turn-next pass pass! pass-reset)
+(provide finish? turn-init turn turn-next pass pass! pass-reset)
+
+(define finish?
+  (lambda ()
+    (< 1 (pass))))
 
 ;; turn
 (define *turn* 0)

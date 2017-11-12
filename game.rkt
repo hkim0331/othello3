@@ -3,8 +3,8 @@
 (require "board.rkt")
 (require "display.rkt")
 (require "turn.rkt")
-(require "players.rkt")
 (require "man.rkt")
+;;(require "ai-0.rkt")
 
 (define init
   (lambda (n)
@@ -12,9 +12,10 @@
     (display-init n)
     (turn-init)))
 
-(define finish?
-  (lambda ()
-    (< 1 (pass))))
+(define players
+  (lambda (p1 p2)
+    (lambda (turn)
+      (if (even? turn) (p1) (p2)))))
 
 ;; if call message-box, should lang racket/gui.
 (define judge
@@ -24,18 +25,15 @@
 
 (define game
   (lambda (p1 p2 n)
-    (let ((players (players-init p1 p2)))
+    (let ((player (players p1 p2)))
       (init n)
-      (turn-init)
-      ;; first move black
-      ;; (turn-next)
-      (display)
       (let loop ()
-        (players (turn))
-        ;; (printf "next ~a~%" (turn))
         (display)
+        (player (turn))
         (unless (finish?)
           (loop)))
       (judge))))
 
 (game man man 8)
+;;(game man ai-0 8)
+

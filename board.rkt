@@ -3,6 +3,7 @@
 (provide
  board-init
  n
+ mark
  mark?
  _?
  opposite
@@ -13,6 +14,10 @@
 
 (define *m* #f)
 (define *n* #f)
+
+(define error
+  (lambda (s)
+    (printf s)))
 
 (define range?
   (lambda (x y)
@@ -36,6 +41,10 @@
   (λ (x y)
     (get-aux fourth x y 1)))
 
+(define mark
+  (lambda (n)
+    (if (even? n) "o" "x")))
+
 (define mark?
   (lambda (m1 m2)
     (equal? m1 m2)))
@@ -48,7 +57,7 @@
     (cond
       ((mark? m "o") "x")
       ((mark? m "x") "o")
-      (else (error "mark is not 'o' neigher 'x'.")))))
+      (else (error "opossite: mark is not 'o' neigher 'x'.")))))
 
 (define put!
   (λ (x y mark)
@@ -60,7 +69,7 @@
           (else (cons (first m) (RM (rest m)))))))
     (if (range? x y)
         (set! *m* (cons (list x y mark (get-w x y)) (RM *m*)))
-        (error "you can't put there."))))
+        (error "put!: you can't put there."))))
 
 (define turn!
   (λ (x y)

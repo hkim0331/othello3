@@ -1,11 +1,17 @@
 #lang racket/gui
 
+(require racket/runtime-path)
+(define-runtime-path sorry-dave "./resources/sorry-dave.mp3")
+(define-runtime-path i-m-afraid "./resources/i-m-afraid.m4a")
+
 (require "board.rkt")
 (require "check.rkt")
 (require "hand.rkt")
 (require "turn.rkt")
 
-(provide display-init display mark)
+
+;;FIXME: display shadows racket function, 'display'.
+(provide display-init display)
 
 (define *frame* #f)
 (define *btns* #f)
@@ -13,11 +19,8 @@
 
 (define error
   (lambda (msg)
+    (play-sound i-m-afraid #t)
     (message-box "error" msg)))
-
-(define mark
-  (lambda (n)
-    (if (even? n) "o" "x")))
 
 (define init!
   (lambda (n)
@@ -32,10 +35,12 @@
                    [callback
                     (lambda (b e)
                       (let* ((m (mark (turn)))
-                             (ords (check x y m)))
-                        (if (empty? ords)
-                            (error "empty ords. you can't do that.")
-                            (hand! x y m ords))))])))
+                             (stones (check x y m)))
+                        (if (empty? stones)
+                            (error "no stone. you can't do that.")
+                            ;;CHANGED for simpicity
+                            ;; do not pass stones
+                            (hand! x y m))))])))
             (set! *btns* (cons (list x y btn) *btns*))))))
     (new button% [parent (new horizontal-pane% [parent *frame*])]
          [label "pass"]
@@ -64,6 +69,7 @@
 (define C
   (lambda (m) (if (_? m) " " m)))
 
+;; FIXME: scheme has display function.
 (define display
   (lambda ()
     (let ((title

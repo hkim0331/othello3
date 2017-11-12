@@ -1,12 +1,14 @@
 #lang racket
+;;; required from hand.rkt
 
 (require "board.rkt")
+
 (provide check)
 
-;;; 相手石が見つかってから呼ばれる。
-;;; (x y) は調べようとする座標
-;;; nx ny は次方向への関数
-;;; mark は自石。
+;; 相手石が見つかってから呼ばれる。
+;; (x y) は調べようとする座標
+;; nx ny は次方向への関数
+;; mark は自石。
 (define find-aux
   (lambda (x y nx ny mark)
     (let ((m (get x y)))
@@ -27,7 +29,7 @@
      (find-aux (nx x) (ny y) nx ny mark))))
 
 ;; (x y) に m は置けるか？ == (x y) の縦横斜めに m があるか？
-;; 戻り値はリスト。((x1 y1) (x2 y2) ... )
+;; 戻り値は (x y) に置いたら相手石を挟む自石のリスト。((x1 y1) (x2 y2) ... )
 (define check
   (lambda (x y m)
     (filter
