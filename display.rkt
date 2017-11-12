@@ -34,13 +34,13 @@
                    [label " "]
                    [callback
                     (lambda (b e)
-                      (let* ((m (mark (turn)))
-                             (stones (check x y m)))
-                        (if (empty? stones)
-                            (error "no stone. you can't do that.")
-                            ;;CHANGED for simpicity
-                            ;; do not pass stones
-                            (hand! x y m))))])))
+                      ;; (let* ((m (mark (turn)))
+                      ;;        (stones (check x y m)))
+                      ;;   (if (empty? stones)
+                      ;;       (error "no stone. you can't do that.")
+                      ;;       (hand! x y m stones)))
+                      (hand! x y (mark (turn)))
+                      )])))
             (set! *btns* (cons (list x y btn) *btns*))))))
     (new button% [parent (new horizontal-pane% [parent *frame*])]
          [label "pass"]

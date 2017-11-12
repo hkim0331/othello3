@@ -4,7 +4,7 @@
 (require "display.rkt")
 (require "turn.rkt")
 (require "man.rkt")
-;;(require "ai-0.rkt")
+(require "ai-0.rkt")
 
 (define init
   (lambda (n)
@@ -34,6 +34,5 @@
           (loop)))
       (judge))))
 
-(game man man 8)
-;;(game man ai-0 8)
-
+;;(game man man 8)
+(game man ai-0 8)

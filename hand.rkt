@@ -1,4 +1,5 @@
 #lang racket
+
 (require "board.rkt")
 (require "check.rkt")
 ;; FIXME: bad design
@@ -50,13 +51,23 @@
   (lambda (o ords)
     (flat1 (map betweens (pairs o ords)))))
 
+;; shadow racket's error
+(define error
+  (lambda (s)
+    (printf "~a~%" s)))
+
 ;; should clear *stop* when man plays.
 ;; check を呼ぶのは余計だが、引数で渡すのは ai-側から見て面倒。
 (define hand!
   (lambda (x y m)
-    (put! x y m)
-    (map (lambda (xy) (apply turn! xy))
-         (must-be-turned (list x y) (check x y m)))
-    (turn-next)
-    (pass-reset)
-    (man-restart)))
+    (let ((ok (check x y m)))
+      (if (empty? ok)
+          (error "hand! your hand is illegal")
+          (begin
+            (put! x y m)
+            (map (lambda (xy) (apply turn! xy))
+                 (must-be-turned (list x y) ok))
+            (turn-next)
+            (pass-reset)))
+      (man-restart))))
+

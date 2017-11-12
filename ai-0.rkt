@@ -5,6 +5,9 @@
 (require "board.rkt")
 (require "check.rkt")
 (require "turn.rkt")
+(require "hand.rkt")
+
+(provide ai-0)
 
 (define flat1
   (lambda (lst)
@@ -25,11 +28,14 @@
            (all (flat1 (for/list ([x (range (n))])
                         (for/list ([y (range (n))])
                           (list x y)))))
-           (ok (filter
-                (lambda (xy) (not-null? (check (first xy) (second xy) m)))
-                all)))
-      (first ok))))
+           (ok (first
+                (filter
+                 (lambda (xy) (not-null? (check (first xy) (second xy) m)))
+                 all))))
+      ;;debug
+      (printf "~a~%" ok)
+      (hand! (first ok) (second ok) m))))
 
 ;;test
-(board-init 8)
-(ai-0)
+;;(board-init 8)
+;;(ai-0)
