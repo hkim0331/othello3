@@ -16,9 +16,9 @@
         (else (find-aux (nx x) (ny y) nx ny mark))))))
 
 ;; (x y) が "_" で、
-;; 次の場所に相手のコマがあり、
+;; 次の場所に相手コマがあり、
 ;; そのあと相手コマが続いた後に自石があればその座標、ないときは '()。
-;; 調査方向を表す関数 nx, ny を引数で渡す。
+;; nx, ny は調査方向を表す関数。
 (define find
   (lambda (x y nx ny mark)
     (and
@@ -26,8 +26,9 @@
      (mark? (get (nx x) (ny y)) (opposite mark))
      (find-aux (nx x) (ny y) nx ny mark))))
 
-;; (x y) に m は置けるか？ == (x y) の縦横斜めに m があるか？
+;; (x y) の縦横斜めに m があるか？
 ;; 戻り値は (x y) に置いたら相手石を挟む自石のリスト。((x1 y1) (x2 y2) ... )
+;; 置けないときの戻り値は ()。
 (define check
   (lambda (x y m)
     (filter
