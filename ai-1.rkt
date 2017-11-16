@@ -1,5 +1,6 @@
 #lang racket
 ;; 可能な手のうち、どれかを選んで打つ。
+;; こんなんでいいんか？いいんです。
 
 (require "utils.rkt")
 (require "board.rkt")

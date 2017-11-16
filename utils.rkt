@@ -3,7 +3,9 @@
 (provide
  flat1
  not-null?
- nth)
+ now
+ nth
+ )
 
 (define flat1
   (lambda (lst)
@@ -12,9 +14,17 @@
         (append (car lst)
                 (flat1 (cdr lst))))))
 
+;; in Clojure, (def not-nil? (comp not nil?))
 (define not-null?
   (lambda (x)
     (not (null? x))))
+
+;; returns current-time in iso format.
+(define now
+  (λ ()
+    (let ((date (seconds->date (current-seconds))))
+      (date-display-format 'iso-8601)
+      (date->string (current-date) #t))))
 
 ;; follow commonlisp way.
 (define nth
