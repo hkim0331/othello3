@@ -22,7 +22,7 @@
       (if (null? ok)
           (let ()
             (pass!)
-            "pass")
+            "pass") ;; return value.
           (let ((hand (first ok)))
             (hand! (first hand) (second hand) m)
-            (cons m hand))))))
+            (cons m hand)))))) ;; yes, this is return value, too.
