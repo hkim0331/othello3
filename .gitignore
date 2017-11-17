@@ -1,7 +1,7 @@
-/compiled/
-/resources/
+/compiled/*
+/resources/*
 !/resorces/i-m-afraid.m4a
-/records/
+/records/*
 !/records/.placeholder
 *.app
 test.*
