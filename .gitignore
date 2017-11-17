@@ -1,5 +1,6 @@
 compiled/
 resources/
+records/
 *.app
 test.*
 
