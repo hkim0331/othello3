@@ -61,7 +61,11 @@
       (put! m m "o"))))
 
 (define C
-  (lambda (m) (if (_? m) " " m)))
+  (lambda (m)
+    (cond
+      ((mark? m "o") "○")
+      ((mark? m "x") "●")
+      (else " "))))
 
 ;; FIXME: scheme has display function.
 (define display

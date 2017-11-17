@@ -3,6 +3,7 @@
 (require "board.rkt")
 (require "display.rkt")
 (require "turn.rkt")
+(require "record.rkt")
 
 (require "man.rkt")
 (require "ai-0.rkt")
@@ -13,9 +14,7 @@
   (lambda ()
     (message-box
      "othello3"
-     (string-append "o-x = " (number->string (o-x))))
-    ;;(exit)
-    ))
+     (string-append "o-x = " (number->string (o-x))))))
 
 (define init
   (lambda (n)
@@ -33,15 +32,18 @@
 (define game
   (lambda (p1 p2 . n)
     (let ((player (players p1 p2)))
+      (record-start)
       (if (null? n)
           (init 8)
           (init (car n)))
       (let loop ()
         (display)
-        (player (turn))
+        (record (player (turn)))
         (unless (finish?)
           (loop)))
-      (judge))))
+      (judge)
+      (record (o-x))
+      (record-end))))
 
 ;; under construction,
 ;; (println (current-command-line-arguments))
@@ -53,6 +55,6 @@
 ;;(game man man)
 ;;(game man ai-0)
 ;;(game ai-0 ai-1)
-;;(game ai-1 ai-1)
+(game ai-1 ai-1)
 ;;(game ai-1 man)
 
