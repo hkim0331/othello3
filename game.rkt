@@ -53,6 +53,6 @@
 ;;(game man man)
 ;;(game man ai-0)
 ;;(game ai-0 ai-1)
-;;(game ai-1 ai-1)
+(game ai-1 ai-1)
 ;;(game ai-1 man)
 
