@@ -22,8 +22,6 @@
     (turn-init)
     (display-init n)))
 
-;; ここ、もうちょっと理解を深めよう。
-;; 「こうしたら動いた」にすぎない。(p1) と () で囲むあたり。
 (define players
   (lambda (p1 p2)
     (lambda (turn)
@@ -44,13 +42,6 @@
       (judge)
       (record (o-x))
       (record-end))))
-
-;; under construction,
-;; (println (current-command-line-arguments))
-;; (define main
-;;   (lambda ()
-;;     (let ((argv (current-command-line-arguments)))
-;;       )))
 
 ;;(game man man)
 ;;(game man ai-0)
