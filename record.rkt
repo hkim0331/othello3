@@ -12,7 +12,8 @@
 (define record-start
   (lambda ()
     (set! *port* (open-output-file
-                  (string-append "records/" (now) ".txt")))))
+                  (string-append "records/" (now) ".txt")))
+        (record (string-append ";" (now)))))
 
 (define record
   (lambda (s)
@@ -20,5 +21,6 @@
 
 (define record-end
   (lambda ()
+    (record (string-append ";" (now)))
     (close-output-port *port*)))
 
