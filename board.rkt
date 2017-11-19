@@ -20,7 +20,6 @@
 (define *m* #f)
 (define *n* #f)
 
-
 ;; shadow racket's error. or use other name?
 (define error
   (lambda (s)
@@ -74,16 +73,20 @@
       ((mark? m "x") "o")
       (else (error "opossite: mark is not 'o' neigher 'x'.")))))
 
-(define put!
-  (λ (x y mark)
-    (define RM
-      (λ (m)
+(define remove-first
+  (lambda (x y m)
         (cond
           ((null? m) '())
           ((and (= x (first (car m))) (= y (second (car m)))) (cdr m))
-          (else (cons (first m) (RM (rest m)))))))
+          (else (cons (first m) (remove-first x y (rest m)))))))
+
+(define put!
+  (λ (x y mark)
     (if (range? x y)
-        (set! *m* (cons (list x y mark (get-w x y)) (RM *m*)))
+        (begin
+          (set! *m* (cons (list x y mark (get-w x y))
+                          (remove-first x y *m*)))
+          (set! *blanks* (remove-first x y *blanks*)))
         (error "put!: you can't put there."))))
 
 (define turn!

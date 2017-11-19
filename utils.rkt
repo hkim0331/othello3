@@ -16,6 +16,7 @@
         (append (car lst)
                 (flat1 (cdr lst))))))
 
+
 ;; in Clojure, (def not-nil? (comp not nil?))
 (define not-null?
   (lambda (x)
