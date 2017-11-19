@@ -17,12 +17,9 @@
 (define ai-1
   (lambda ()
     (let* ((m (mark (turn)))
-           (all (flat1 (for/list ([x (range (n))])
-                        (for/list ([y (range (n))])
-                          (list x y)))))
            (ok (filter
                 (lambda (xy) (not-null? (check (first xy) (second xy) m)))
-                all)))
+                (blanks))))
       (if (null? ok)
           (let ()
             (pass!)
