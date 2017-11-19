@@ -1,5 +1,7 @@
 #lang racket
 
+(require "utils.rkt")
+
 (provide
  board-init
  o-x
@@ -11,10 +13,13 @@
  get
  get-w
  put!
- turn!)
+ turn!
+ blanks
+ )
 
 (define *m* #f)
 (define *n* #f)
+
 
 ;; shadow racket's error. or use other name?
 (define error
@@ -96,6 +101,7 @@
   (λ (n)
     (set! *n* n)
     (set! *m* '())
+    (set! *blanks* (init-blanks n))
     (for ([y (range *n*)])
          (for ([x (range *n*)])
               (set! *m* (cons (list x y "_" 1) *m*))))))
@@ -108,3 +114,13 @@
       (put! m (- m 1) "x")
       (put! (- m 1) m "x")
       (put! m m "o"))))
+
+(define *blanks* #f)
+
+(define init-blanks
+  (lambda (n)
+    (flat1 (for/list ([x (range n)])
+             (for/list ([y (range n)])
+               (list x y))))))
+
+(define blanks (lambda () *blanks*))
