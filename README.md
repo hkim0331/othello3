@@ -29,6 +29,7 @@ $ racket game.rkt
 
 ## TODO
 
+* blanks の導入。毎回 n * n の空きを探すのは余計だろう。
 * ボタンとボタンのラベルのサイズ。
 * $ othello man.rkt ai-0.rkt のコマンドラインで実行したい。
 

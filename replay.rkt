@@ -25,12 +25,13 @@
                     (x (second hand))
                     (y (third hand)))
                 (hand! x y m)
-                (display)))
+                (display)
+                (sleep 0.5)))
             (loop (read in))))))))
-
 
 ;;引数をベクタで返す。
 ;;(current-command-line-arguments)
+;;なので、
 
 (map replay
      (vector->list (current-command-line-arguments)))
