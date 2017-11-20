@@ -13,16 +13,13 @@
 (define ai-0
   (lambda ()
     (let* ((m (mark (turn)))
-           (all (flat1 (for/list ([x (range (n))])
-                         (for/list ([y (range (n))])
-                           (list x y)))))
            (ok (filter
                 (lambda (xy) (not-null? (check (first xy) (second xy) m)))
-                all)))
+                (blanks))))
       (if (null? ok)
           (let ()
             (pass!)
-            "pass")
+            "pass") ;; return value.
           (let ((hand (first ok)))
             (hand! (first hand) (second hand) m)
-            (cons m hand))))))
+            (cons m hand)))))) ;; yes, this is return value, too.

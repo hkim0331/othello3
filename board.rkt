@@ -1,5 +1,7 @@
 #lang racket
 
+(require "utils.rkt")
+
 (provide
  board-init
  o-x
@@ -11,7 +13,9 @@
  get
  get-w
  put!
- turn!)
+ turn!
+ blanks
+ )
 
 (define *m* #f)
 (define *n* #f)
@@ -69,16 +73,20 @@
       ((mark? m "x") "o")
       (else (error "opossite: mark is not 'o' neigher 'x'.")))))
 
-(define put!
-  (λ (x y mark)
-    (define RM
-      (λ (m)
+(define remove-first
+  (lambda (x y m)
         (cond
           ((null? m) '())
           ((and (= x (first (car m))) (= y (second (car m)))) (cdr m))
-          (else (cons (first m) (RM (rest m)))))))
+          (else (cons (first m) (remove-first x y (rest m)))))))
+
+(define put!
+  (λ (x y mark)
     (if (range? x y)
-        (set! *m* (cons (list x y mark (get-w x y)) (RM *m*)))
+        (begin
+          (set! *m* (cons (list x y mark (get-w x y))
+                          (remove-first x y *m*)))
+          (set! *blanks* (remove-first x y *blanks*)))
         (error "put!: you can't put there."))))
 
 (define turn!
@@ -96,6 +104,7 @@
   (λ (n)
     (set! *n* n)
     (set! *m* '())
+    (set! *blanks* (init-blanks n))
     (for ([y (range *n*)])
          (for ([x (range *n*)])
               (set! *m* (cons (list x y "_" 1) *m*))))))
@@ -108,3 +117,13 @@
       (put! m (- m 1) "x")
       (put! (- m 1) m "x")
       (put! m m "o"))))
+
+(define *blanks* #f)
+
+(define init-blanks
+  (lambda (n)
+    (flat1 (for/list ([x (range n)])
+             (for/list ([y (range n)])
+               (list x y))))))
+
+(define blanks (lambda () *blanks*))

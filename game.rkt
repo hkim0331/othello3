@@ -39,9 +39,9 @@
         (record (player (turn)))
         (unless (finish?)
           (loop)))
-      (judge)
       (record (o-x))
-      (record-end))))
+      (record-end))
+      (judge)))
 
 ;;(game man man)
 ;;(game man ai-0)
