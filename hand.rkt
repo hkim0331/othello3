@@ -3,8 +3,6 @@
 (require "utils.rkt")
 (require "board.rkt")
 (require "check.rkt")
-;; FIXME: bad design
-;; for man vs man, should reset *stop* flag by man-restart.
 (require "turn.rkt")
 (require "man.rkt")
 
@@ -52,8 +50,8 @@
   (lambda (s)
     (printf "~a~%" s)))
 
-;; should clear *stop* when man plays.
-;; check を呼ぶのは余計だが、引数で渡すのは ai-側から見て面倒。
+;; don't forget to clear *stop* when man plays.
+;; 無残なデザインだが、man vs man はプロジェクトの目的ではないので。
 (define hand!
   (lambda (x y m)
     (let ((ok (check x y m)))
