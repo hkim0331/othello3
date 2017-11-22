@@ -29,14 +29,18 @@ $ racket game.rkt
 
 ## TODO
 
-* blanks の導入。毎回 n * n の空きを探すのは余計だろう。
 * ボタンとボタンのラベルのサイズ。
 * $ othello man.rkt ai-0.rkt のコマンドラインで実行したい。
 
 ## FIXME
 
+* 盤面にウェートを導入する。
+  ウェートを遺伝アルゴリズムで調整するようになってプロジェクト完成。
 
 ## LOG
+
+* [update 2017-11-19, 1.3] blanks の導入。毎回 n * n の空きを探すのは余計。
+  50%のスピードアップ。
 
 ---
 hiroshi . kimura . 0331 @ gmail .com
