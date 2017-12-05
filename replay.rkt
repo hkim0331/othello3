@@ -2,10 +2,10 @@
 ;; リプレーする棋譜をコマンドラインから取れるように。
 ;; FIXME: 結果を表示するか？
 
-(require "display.rkt")
-(require "hand.rkt")
-(require "board.rkt")
-(require "turn.rkt")
+(require "display.rkt"
+         "hand.rkt"
+         "board.rkt"
+         "turn.rkt")
 
 (define init
   (lambda (n)

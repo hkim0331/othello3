@@ -1,16 +1,17 @@
 #lang racket/gui
 
-(require racket/runtime-path)
+(require racket/runtime-path
+         "board.rkt"
+         "check.rkt"
+         "hand.rkt"
+         "turn.rkt")
+
 (define-runtime-path sorry-dave "./resources/sorry-dave.mp3")
 (define-runtime-path i-m-afraid "./resources/i-m-afraid.m4a")
 
-(require "board.rkt")
-(require "check.rkt")
-(require "hand.rkt")
-(require "turn.rkt")
-
 ;;FIXME: display shadows racket function, 'display'.
-(provide display-init display)
+(provide display-init
+         display)
 
 (define *frame* #f)
 (define *btns* #f)

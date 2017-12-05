@@ -1,6 +1,7 @@
 #lang racket/gui
 
-(provide man man-restart)
+(provide man
+         man-restart)
 
 (define *stop* true)
 

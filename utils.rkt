@@ -1,21 +1,19 @@
 #lang racket
 
-(provide
- flat1
- not-null?
- now
- nth
- )
-
 (require racket/date)
 
+(provide flat1
+         not-null?
+         now
+         nth)
+
+;; speed up?
 (define flat1
   (lambda (lst)
     (if (null? lst)
         '()
         (append (car lst)
                 (flat1 (cdr lst))))))
-
 
 ;; in Clojure, (def not-nil? (comp not nil?))
 (define not-null?

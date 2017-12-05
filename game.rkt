@@ -1,13 +1,13 @@
 #lang racket/gui
 
-(require "board.rkt")
-(require "display.rkt")
-(require "turn.rkt")
-(require "record.rkt")
+(require "board.rkt"
+         "display.rkt"
+         "turn.rkt"
+         "record.rkt")
 
-(require "man.rkt")
-(require "ai-0.rkt")
-(require "ai-1.rkt")
+(require "man.rkt"
+         "ai-0.rkt"
+         "ai-1.rkt")
 
 ;; if call message-box, should choose #lang racket/gui
 (define judge
@@ -31,8 +31,7 @@
   (lambda (p1 p2 . n)
     (let ((player (players p1 p2)))
       (record-start)
-      (if (null? n)
-          (init 8)
+      (if (null? n) (init 8)
           (init (car n)))
       (let loop ()
         (display)
