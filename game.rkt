@@ -1,3 +1,4 @@
+#!/usr/bin/env racket
 #lang racket/gui
 
 (require "board.rkt"

@@ -9,7 +9,6 @@
          "hand.rkt")
 
 (provide ai-0)
-
 (define ai-0
   (lambda ()
     (let* ((m (mark (turn)))
