@@ -1,7 +1,8 @@
 all: othello othello.app
 
 othello:
-	raco exe othello.rkt
+	raco exe game.rkt
+	mv game othello
 
 othello.app:
 	raco exe --gui othello-gui.rkt

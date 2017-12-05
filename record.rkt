@@ -1,5 +1,8 @@
 #lang racket
 
+(require racket/runtime-path)
+(define-runtime-path records "./records/")
+
 (provide
  record-start
  record-end
@@ -13,7 +16,8 @@
 (define record-start
   (lambda ()
     (set! *port* (open-output-file
-                  (string-append "records/" (now) ".txt")))
+                  (string-append
+                   (path->string records) (now) ".txt")))
     (record (string-append "; " (now)))
     (set! *msec* (current-milliseconds))))
 
