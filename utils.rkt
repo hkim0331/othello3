@@ -1,13 +1,11 @@
 #lang racket
 
-(provide
- flat1
- not-null?
- now
- nth
- )
-
 (require racket/date)
+
+(provide flat1
+         not-null?
+         now
+         nth)
 
 ;; speed up?
 (define flat1

@@ -3,10 +3,9 @@
 (require racket/runtime-path)
 (define-runtime-path records "./records/")
 
-(provide
- record-start
- record-end
- record)
+(provide record-start
+         record-end
+         record)
 
 (require "utils.rkt")
 

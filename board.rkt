@@ -2,20 +2,18 @@
 
 (require "utils.rkt")
 
-(provide
- board-init
- o-x
- n
- mark
- mark?
- _?
- opposite
- get
- get-w
- put!
- turn!
- blanks
- )
+(provide board-init
+         o-x
+         n
+         mark
+         mark?
+         _?
+         opposite
+         get
+         get-w
+         put!
+         turn!
+         blanks)
 
 (define *m* #f)
 (define *n* #f)

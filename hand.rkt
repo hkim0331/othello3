@@ -1,10 +1,10 @@
 #lang racket
 
-(require "utils.rkt")
-(require "board.rkt")
-(require "check.rkt")
-(require "turn.rkt")
-(require "man.rkt")
+(require "utils.rkt"
+         "board.rkt"
+         "check.rkt"
+         "turn.rkt"
+         "man.rkt")
 
 (provide hand!)
 

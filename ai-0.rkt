@@ -2,11 +2,11 @@
 ;; 可能な手のうち、最初に見つかるものを打つ。
 ;; こんなの人工知能か？いいんです。
 
-(require "utils.rkt")
-(require "board.rkt")
-(require "check.rkt")
-(require "turn.rkt")
-(require "hand.rkt")
+(require "utils.rkt"
+         "board.rkt"
+         "check.rkt"
+         "turn.rkt"
+         "hand.rkt")
 
 (provide ai-0)
 
