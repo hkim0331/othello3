@@ -14,10 +14,10 @@
  get-w
  put!
  turn!
- blanks
- )
+ blanks)
 
 (define *m* #f)
+
 (define *n* #f)
 
 ;; shadow racket's error. or use other name?
